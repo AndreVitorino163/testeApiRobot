@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.8.6 on darwin)" generated="20201020 20:30:05.015" rpa="false">
+<suite id="s1" name="testeApi" source="/Users/andrevitorino/Documents/TesteCamila/testeApi.robot">
+<kw name="Conectar API" library="resource" type="setup">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>api</arg>
+<arg>${URL_API}</arg>
+</arguments>
+<msg timestamp="20201020 20:30:05.275" level="INFO">Creating Session using : alias=api, url=http://www.omdbapi.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20201020 20:30:05.275" endtime="20201020 20:30:05.276"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.274" endtime="20201020 20:30:05.276"></status>
+</kw>
+<test id="s1-t1" name="Buscar Filme especifico (GET)">
+<kw name="Consultar filme &quot;tt1285016&quot; &quot;${API_KEY}&quot;" library="resource">
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>api</arg>
+<arg>?i=${ID_DO_FILME}&amp;apikey=${API_KEY}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20201020 20:30:05.353" level="INFO">GET Request : url=http://www.omdbapi.com//?i=tt1285016&amp;apikey=52ec71bf 
+ path_url=//?i=tt1285016&amp;apikey=52ec71bf 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20201020 20:30:05.353" level="INFO">GET Response : url=http://www.omdbapi.com//?i=tt1285016&amp;apikey=52ec71bf 
+ status=200, reason=OK 
+ body={"Title":"The Social Network","Year":"2010","Rated":"PG-13","Released":"01 Oct 2010","Runtime":"120 min","Genre":"Biography, Drama","Director":"David Fincher","Writer":"Aaron Sorkin (screenplay), Ben Mezrich (book)","Actors":"Jesse Eisenberg, Rooney Mara, Bryan Barter, Dustin Fitzsimons","Plot":"As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.","Language":"English, French","Country":"USA","Awards":"Won 3 Oscars. Another 171 wins &amp; 184 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BOGUyZDUxZjEtMmIzMC00MzlmLTg4MGItZWJmMzBhZjE0Mjc1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.7/10"},{"Source":"Rotten Tomatoes","Value":"96%"},{"Source":"Metacritic","Value":"95/100"}],"Metascore":"95","imdbRating":"7.7","imdbVotes":"611,384","imdbID":"tt1285016","Type":"movie","DVD":"N/A","BoxOffice":"N/A","Production":"Scott Rudin Productions, Trigger Street Productions, Michael De Luca","Website":"N/A","Response":"True"} 
+ </msg>
+<msg timestamp="20201020 20:30:05.353" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20201020 20:30:05.278" endtime="20201020 20:30:05.354"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${RESPOSTA.text}</arg>
+</arguments>
+<msg timestamp="20201020 20:30:05.354" level="INFO">{"Title":"The Social Network","Year":"2010","Rated":"PG-13","Released":"01 Oct 2010","Runtime":"120 min","Genre":"Biography, Drama","Director":"David Fincher","Writer":"Aaron Sorkin (screenplay), Ben Mezrich (book)","Actors":"Jesse Eisenberg, Rooney Mara, Bryan Barter, Dustin Fitzsimons","Plot":"As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.","Language":"English, French","Country":"USA","Awards":"Won 3 Oscars. Another 171 wins &amp; 184 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BOGUyZDUxZjEtMmIzMC00MzlmLTg4MGItZWJmMzBhZjE0Mjc1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"7.7/10"},{"Source":"Rotten Tomatoes","Value":"96%"},{"Source":"Metacritic","Value":"95/100"}],"Metascore":"95","imdbRating":"7.7","imdbVotes":"611,384","imdbID":"tt1285016","Type":"movie","DVD":"N/A","BoxOffice":"N/A","Production":"Scott Rudin Productions, Trigger Street Productions, Michael De Luca","Website":"N/A","Response":"True"}</msg>
+<status status="PASS" starttime="20201020 20:30:05.354" endtime="20201020 20:30:05.355"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20201020 20:30:05.355" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20201020 20:30:05.355" endtime="20201020 20:30:05.355"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.277" endtime="20201020 20:30:05.356"></status>
+</kw>
+<kw name="Conferir status code" library="resource">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUSCODE_DESEJADO}</arg>
+</arguments>
+<msg timestamp="20201020 20:30:05.359" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20201020 20:30:05.356" endtime="20201020 20:30:05.359"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.356" endtime="20201020 20:30:05.359"></status>
+</kw>
+<kw name="Conferir dados do filme existente" library="resource">
+<kw name="Dictionary Should Contain Item" library="Collections">
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<arguments>
+<arg>${RESPOSTA.json()}</arg>
+<arg>Title</arg>
+<arg>${FILME_ID.Title}</arg>
+</arguments>
+<status status="PASS" starttime="20201020 20:30:05.360" endtime="20201020 20:30:05.361"></status>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<arguments>
+<arg>${RESPOSTA.json()}</arg>
+<arg>Year</arg>
+<arg>${FILME_ID.Year}</arg>
+</arguments>
+<status status="PASS" starttime="20201020 20:30:05.361" endtime="20201020 20:30:05.361"></status>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<arguments>
+<arg>${RESPOSTA.json()}</arg>
+<arg>Language</arg>
+<arg>${FILME_ID.Language}</arg>
+</arguments>
+<status status="PASS" starttime="20201020 20:30:05.362" endtime="20201020 20:30:05.362"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.359" endtime="20201020 20:30:05.362"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.276" endtime="20201020 20:30:05.363" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Buscar Filme Inexistente (GET)">
+<kw name="Consultar filme &quot;123&quot; &quot;${API_KEY}&quot;" library="resource">
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>api</arg>
+<arg>?i=${ID_DO_FILME}&amp;apikey=${API_KEY}</arg>
+</arguments>
+<assign>
+<var>${RESPOSTA}</var>
+</assign>
+<msg timestamp="20201020 20:30:05.402" level="INFO">GET Request : url=http://www.omdbapi.com//?i=123&amp;apikey=52ec71bf 
+ path_url=//?i=123&amp;apikey=52ec71bf 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': '__cfduid=defd45d194722f6508a6c346721d394ee1603236605'} 
+ body=None 
+ </msg>
+<msg timestamp="20201020 20:30:05.402" level="INFO">GET Response : url=http://www.omdbapi.com//?i=123&amp;apikey=52ec71bf 
+ status=200, reason=OK 
+ body={"Response":"False","Error":"Incorrect IMDb ID."} 
+ </msg>
+<msg timestamp="20201020 20:30:05.402" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20201020 20:30:05.365" endtime="20201020 20:30:05.402"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${RESPOSTA.text}</arg>
+</arguments>
+<msg timestamp="20201020 20:30:05.403" level="INFO">{"Response":"False","Error":"Incorrect IMDb ID."}</msg>
+<status status="PASS" starttime="20201020 20:30:05.403" endtime="20201020 20:30:05.403"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESPOSTA}</arg>
+</arguments>
+<msg timestamp="20201020 20:30:05.404" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20201020 20:30:05.403" endtime="20201020 20:30:05.404"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.364" endtime="20201020 20:30:05.404"></status>
+</kw>
+<kw name="Conferir status code" library="resource">
+<arguments>
+<arg>200</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESPOSTA.status_code}</arg>
+<arg>${STATUSCODE_DESEJADO}</arg>
+</arguments>
+<msg timestamp="20201020 20:30:05.406" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20201020 20:30:05.405" endtime="20201020 20:30:05.406"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.405" endtime="20201020 20:30:05.406"></status>
+</kw>
+<kw name="Conferir dados do filme Inexistente" library="resource">
+<kw name="Dictionary Should Contain Item" library="Collections">
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<arguments>
+<arg>${RESPOSTA.json()}</arg>
+<arg>Response</arg>
+<arg>${FILME_INEXISTENTE.Response}</arg>
+</arguments>
+<status status="PASS" starttime="20201020 20:30:05.407" endtime="20201020 20:30:05.407"></status>
+</kw>
+<kw name="Dictionary Should Contain Item" library="Collections">
+<doc>An item of ``key`` / ``value`` must be found in a ``dictionary``.</doc>
+<arguments>
+<arg>${RESPOSTA.json()}</arg>
+<arg>Error</arg>
+<arg>${FILME_INEXISTENTE.Error}</arg>
+</arguments>
+<status status="PASS" starttime="20201020 20:30:05.407" endtime="20201020 20:30:05.408"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.406" endtime="20201020 20:30:05.408"></status>
+</kw>
+<status status="PASS" starttime="20201020 20:30:05.363" endtime="20201020 20:30:05.409" critical="yes"></status>
+</test>
+<doc>http://www.omdbapi.com/</doc>
+<status status="PASS" starttime="20201020 20:30:05.017" endtime="20201020 20:30:05.409"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0">Critical Tests</stat>
+<stat pass="2" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" id="s1" name="testeApi">testeApi</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
