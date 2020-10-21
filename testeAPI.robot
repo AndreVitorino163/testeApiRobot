@@ -3,6 +3,8 @@ Documentation   http://www.omdbapi.com/
 Resource        resource.robot
 Suite Setup     Conectar API
 
+## Comando para execução no windows: robot -d testeAPI.robot
+## Comando para execução no MacOS    python3 -m robot testeAPI.robot
 
 *** Test Case ***
 
